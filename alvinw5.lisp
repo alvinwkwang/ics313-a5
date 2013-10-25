@@ -267,6 +267,6 @@
 
 (new-location cave (You are in a cave. It's kind of dark in here wish I had an HM05.))
 (new-object donkey cave)
-(new-path garden right hole cave left hole)
+;(new-path garden right hole cave left hole)
 
 
