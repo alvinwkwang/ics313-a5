@@ -191,7 +191,7 @@
             '(i cant ,command like that.)))
           (pushnew ',command *allowed-commands*)))
 
-(defmacro game-action2 (command obj obj2 obj3 obj4 place &body body) ; NUMBER 2!!!!!!!!!
+(defmacro game-action2 (command obj obj2 obj3 obj4 place &body body) ; Macro for the sword forge.
   `(progn (defun ,command (object object1 object2 object3)
             (if (and (eq *location* ',place)
                      (eq object ',obj)
@@ -229,43 +229,43 @@
                    (t '(the wizard awakens from his slumber and greets you warmly. 
                         he hands you the magic low-carb donut- you win! the end.))))
 
-(defparameter *sword-forged* nil)
+(defparameter *sword-forged* nil) ; sets sword-forged to not forged.
 
 (game-action2 forge sword-pommel sword-blade sword-guard sword-grip attic
  (if (and (have 'sword-pommel) (have 'sword-blade) (have 'sword-guard)
-          (have 'sword-grip) (not *sword-forged*))
+          (have 'sword-grip) (not *sword-forged*)); check if all items are present and sword not already forged.
                  (progn (setf *sword-forged* 't)
                         '(the sword is now forged.))
                '(you do not have all the items needed.)))
 
-(defmacro new-location (location location-description)
-    `(if (and (listp ',location-description) 
-              (not (assoc ',location *nodes*)))
-       (pushnew '(,location ,location-description) *nodes*)))
+(defmacro new-location (location location-description) ; adds new location.
+    `(if (and (listp ',location-description)
+              (not (assoc ',location *nodes*))); checks to see if is a list and location does not already exist
+       (pushnew '(,location ,location-description) *nodes*))) ; adds location to nodes.
 
 (defmacro new-object (obj location)
-    `(if (assoc ',location *nodes*)
+    `(if (assoc ',location *nodes*); check if location exists.
        (progn
-         (pushnew ',obj *objects*)
-         (pushnew '(,obj ,location) *object-locations*))))
+         (pushnew ',obj *objects*) ; adds object to list of objects.
+         (pushnew '(,obj ,location) *object-locations*)))); adds object to list of object locations.
 
 (defmacro new-path (location1 direction path-type location2 &optional direction2 path-type2)
   `(if
      (and 
-       (assoc ',location1 *nodes*) 
-       (assoc ',location2 *nodes*))
+       (assoc ',location1 *nodes*) ; checks to see if location1 already exists.
+       (assoc ',location2 *nodes*)) ;checks to see if location2 already exists.
      (progn
        (cond
-         ((and ',direction2 
+         ((and ',direction2 ; checks to see if optionals are filled in.
                ',path-type2)
-          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)
-          (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*))
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*) ; if optionals are filled in adds first edge
+          (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*)) ; if optionals are filled in adds second edge
         (t
-          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*))))))
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)))))); if optionals aren't filled in adds edge
 
 
 
-(new-location cave (You are in a cave. It is kind of dark in here wish I had an HM05.))
+(new-location cave (You are in a cave. It's kind of dark in here wish I had an HM05.))
 (new-object donkey cave)
 (new-path garden right hole cave left hole)
 
