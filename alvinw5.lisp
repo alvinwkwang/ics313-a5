@@ -5,7 +5,7 @@
 
 
 ;;global constant containing name
-(defparameter +ID+ "Alvin Wang")
+(defparameter +ID+ "Alvin Wang, Brent Yoshida, and Taylor Kennedy")
 
 ; wizards_game part 1
 
