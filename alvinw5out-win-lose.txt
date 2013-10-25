@@ -1,0 +1,137 @@
+ID:
+CL-USER 2 > +ID+
+"Alvin Wang, Brent Yoshida, and Taylor Kennedy"
+
+WIN:
+CL-USER 2 > (game-repl)
+look
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a whiskey on the floor. You see a bucket on the floor. You see a sword-grip on the floor.
+walk upstairs
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here. You see a sword-blade on the floor.
+walk downstairs
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a whiskey on the floor. You see a bucket on the floor. You see a sword-grip on the floor.
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor. You see a chain on the floor. You see a sword-guard on the floor.
+pickup chain
+You are now carrying the chain
+walk west
+You cannot go that way.
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a whiskey on the floor. You see a bucket on the floor. You see a sword-grip on the floor.
+pickup bucket
+You are now carrying the bucket
+inventory
+Items- bucket chain
+walk upstairs
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here. You see a sword-blade on the floor.
+look
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here. You see a sword-blade on the floor.
+weld chain bucket
+The chain is now securely welded to the bucket.
+wlak downstairs
+I do not know that command.
+walk downstairs
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+walk east
+You are in the bedroom. There is a big bed. There is a door going west from here. You see a book on the floor. You see a sword-pommel on the floor.
+walk west
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor. You see a sword-guard on the floor.
+dunk bucket well
+The bucket is now full of water
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+splash bucket wizard
+The wizard awakens from his slumber and greets you warmly. He hands you the magic low-carb donut- you win! The end.
+
+
+LOSE:
+CL-USER 3 : 1 > (game-repl)
+look
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+inventory
+Items-
+pickup frog
+You cannot get that.
+walk upstairs
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here. You see a sword-blade on the floor.
+walk downstairs
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+pickup bucket
+You are now carrying the bucket
+walk east
+You are in the bedroom. There is a big bed. There is a door going west from here. You see a book on the floor. You see a sword-pommel on the floor.
+walk west
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor. You see a chain on the floor. You see a sword-guard ...
+pickup chian
+You cannot get that.
+pickup chain
+You are now carrying the chain
+pickup frog
+You are now carrying the frog
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+walk upstairs
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here. You see a sword-blade on the floor.
+weld chain bucket
+The chain is now securely welded to the bucket.
+walk downstairs
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a sword-guard on the floor.
+dunk bucket well
+The bucket is now full of water
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a ...
+splash bucket wizard
+The wizard awakens and sees that you stole his frog. He is so upset he banishes you to the netherworlds- you lose! The end.
+
+
+CREATE-NEW-ITEM and HELP MENU:
+CL-USER 1 > (game-repl)
+look
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a whiskey on the floor. You see a bucket on the floor. You see a sword-grip on the floor.
+pickup sword-grip
+You are now carrying the sword-grip
+walk east
+You are in the bedroom. There is a big bed. There is a door going west from here. You see a book on the floor. You see a sword-pommel on the floor.
+pickup sword-pommel
+You are now carrying the sword-pommel
+walk west
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a whiskey on the floor. You see a bucket on the floor.
+walk west
+You are in a beautiful garden. There is a well in front of you. There is a door going east from here. You see a frog on the floor. You see a chain on the floor. You see a sword-guard on the floor.
+pickup sword-guard
+You are now carrying the sword-guard
+walk est
+You cannot go that way.
+walk east
+You are in the living-room. A wizard is snoring loudly on the couch. There is a door going west from here. There is a ladder going upstairs from here. There is a door going east from here. You see a whiskey on the floor. You see a bucket on the floor.
+walk upstairs
+You are in the attic. There is a giant welding torch in the corner. There is a ladder going downstairs from here. You see a sword-blade on the floor.
+pickup sword-blade
+You are now carrying the sword-blade
+forge sword-pommel sword-blade sword-guard sword-grip
+The sword is now forged.
+inventory
+Items- sword-grip sword-blade sword-guard sword-pommel
+help
+Help and Hints!
+
+General commands:
+look - Gives a description of your surroundings.
+walk <direction> - Moves your character to new area of given direction
+pickup <object> - Picks up an object in the area and puts it in your inventory.
+inventory - Shows what is currently objects you are currently carrying
+help/h/? - Opens the help and hints menu.
+quit - Quit game.
+
+Special commands:
+weld <object> <object> - Welds one object to another.
+dunk <object> <object> - Dunk an object into another.
+splash <object> <object> - Splash an object onto another.
+forge <object> <object> <object> <object> - Forge four objects into one.
+

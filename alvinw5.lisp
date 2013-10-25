@@ -237,35 +237,66 @@
                  (progn (setf *sword-forged* 't)
                         '(the sword is now forged.))
                '(you do not have all the items needed.)))
-
+			   
+;;Macro the creates a new location
 (defmacro new-location (location location-description) ; adds new location.
     `(if (and (listp ',location-description)
               (not (assoc ',location *nodes*))); checks to see if is a list and location does not already exist
        (pushnew '(,location ,location-description) *nodes*))) ; adds location to nodes.
 
+;;Macro that creates a new object
 (defmacro new-object (obj location)
     `(if (assoc ',location *nodes*); check if location exists.
        (progn
          (pushnew ',obj *objects*) ; adds object to list of objects.
          (pushnew '(,obj ,location) *object-locations*)))); adds object to list of object locations.
 
+;;Macro that creates a new path
 (defmacro new-path (location1 direction path-type location2 &optional direction2 path-type2)
   `(if
      (and 
-       (assoc ',location1 *nodes*) ; checks to see if location1 already exists.
-       (assoc ',location2 *nodes*)) ;checks to see if location2 already exists.
+       (assoc ',location1 *nodes*) 
+       (assoc ',location2 *nodes*))
      (progn
        (cond
-         ((and ',direction2 ; checks to see if optionals are filled in.
-               ',path-type2)
-          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*) ; if optionals are filled in adds first edge
-          (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*)) ; if optionals are filled in adds second edge
-        (t
-          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)))))); if optionals aren't filled in adds edge
+	     ;;Both locations already have edges
+         ((and ',direction2 
+               ',path-type2
+               (assoc ',location1 *edges*)
+               (assoc ',location2 *edges*))
+            (nconc (assoc ',location1 *edges*) '((,location2 ,direction ,path-type)))
+            (nconc (assoc ',location2 *edges*) '((,location1 ,direction2 ,path-type2))))
+         ;;if Only location1 has edges
+		 ((and ',direction2 
+               ',path-type2
+               (assoc ',location1 *edges*)
+               (not (assoc ',location2 *edges*)))
+            (nconc (assoc ',location1 *edges*) '((,location2 ,direction ,path-type)))
+            (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*))
+	     ;;if only location2 has edges
+         ((and ',direction2 
+               ',path-type2
+               (not (assoc ',location1 *edges*))
+               (assoc ',location2 *edges*))
+          (nconc (assoc ',location2 *edges*) '((,location1 ,direction2 ,path-type2)))
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*))
+         ;;if both locations dont have edges
+		 ((and ',direction2 
+               ',path-type2
+               (not (assoc ',location1 *edges*))
+               (not (assoc ',location2 *edges*)))
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)
+          (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*))
+         ;;if only 1 edge is created and that location has no edges
+		 ((not (assoc ',location1 *edges*))
+            (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*))
+          ;;otherwise add edge to location1
+		  (t
+           (nconc (assoc ',location1 *edges*) '((,location2 ,direction ,path-type))))))))
 
 
 
-(new-location cave (You are in a cave. It is kind of dark in here wish I had an HM05.))
+(new-location cave (You are in a cave. It's kind of dark in here wish I had an HM05.))
 (new-object donkey cave)
 (new-path garden right hole cave left hole)
 
