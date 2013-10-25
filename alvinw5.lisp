@@ -250,20 +250,18 @@
          (pushnew '(,obj ,location) *object-locations*))))
 
 (defmacro new-path (location1 direction path-type location2 &optional direction2 path-type2)
-  `(if 
-     ((and 
+  `(if
+     (and 
        (assoc ',location1 *nodes*) 
-       (assoc ',location2 *nodes*)
-       ;(eq (cadr (assoc ',location1 *nodes*))
-           ))
+       (assoc ',location2 *nodes*))
      (progn
-      (cond
-        ((and ',direction2 
-               ',path-type2))
-         (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)
-         (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*))
+       (cond
+         ((and ',direction2 
+               ',path-type2)
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)
+          (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*))
         (t
-          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)))))
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*))))))
 
 
 
