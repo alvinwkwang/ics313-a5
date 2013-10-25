@@ -237,3 +237,38 @@
                  (progn (setf *sword-forged* 't)
                         '(the sword is now forged.))
                '(you do not have all the items needed.)))
+
+(defmacro new-location (location location-description)
+    `(if (and (listp ',location-description) 
+              (not (assoc ',location *nodes*)))
+       (pushnew '(,location ,location-description) *nodes*)))
+
+(defmacro new-object (obj location)
+    `(if (assoc ',location *nodes*)
+       (progn
+         (pushnew ',obj *objects*)
+         (pushnew '(,obj ,location) *object-locations*))))
+
+(defmacro new-path (location1 direction path-type location2 &optional direction2 path-type2)
+  `(if 
+     ((and 
+       (assoc ',location1 *nodes*) 
+       (assoc ',location2 *nodes*)
+       ;(eq (cadr (assoc ',location1 *nodes*))
+           ))
+     (progn
+      (cond
+        ((and ',direction2 
+               ',path-type2))
+         (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)
+         (pushnew '(,location2 (,location1 ,direction2 ,path-type2)) *edges*))
+        (t
+          (pushnew '(,location1 (,location2 ,direction ,path-type)) *edges*)))))
+
+
+
+(new-location cave (You are in a cave. It's kind of dark in here wish I had an HM05.))
+(new-object donkey cave)
+(new-path garden right hole cave left hole)
+
+
